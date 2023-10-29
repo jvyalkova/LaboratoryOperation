@@ -4,12 +4,12 @@ using namespace std;
 void moveDisk(int n, char source, char destination, char auxiliary)
 {
     if (n == 1) {
-        cout << "ÐŸÐµÑ€ÐµÐ¼ÐµÑ‰ÐµÐ½Ð¸Ðµ: 1 Ñ " << source << " Ð½Ð° " << destination << endl;
+        cout << "Ïåðåìåùåíèå: 1 ñ " << source << " íà " << destination << endl;
         return;
     }
 
     moveDisk(n - 1, source, auxiliary, destination);
-    cout << "ÐŸÐµÑ€ÐµÐ¼ÐµÑ‰ÐµÐ½Ð¸Ðµ: " << n << " Ñ " << source << " Ð½Ð° " << destination << endl;
+    cout << "Ïåðåìåùåíèå: " << n << " ñ " << source << " íà " << destination << endl;
     moveDisk(n - 1, auxiliary, destination, source);
 }
 
@@ -17,7 +17,7 @@ int main()
 {
     setlocale(LC_ALL, "RUS");
     int numDisks;
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð´Ð¸ÑÐºÐ¾Ð²: ";
+    cout << "Ââåäèòå êîëè÷åñòâî äèñêîâ: ";
     cin >> numDisks;
 
     moveDisk(numDisks, 'A', 'C', 'B');
