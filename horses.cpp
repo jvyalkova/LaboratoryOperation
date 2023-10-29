@@ -1,19 +1,14 @@
 #include <iostream>
 using namespace std;
 
-// Проверка, находится ли точка (x, y) на доске размером n x n
 bool isValidMove(int x, int y, int n)
 {
     return (x >= 0 && x < n&& y >= 0 && y < n);
 }
 
-// Функция для рекурсивного поиска ходов коня
 void knightTourHelper(int** board, int x, int y, int moveCount, int n)
 {
-    // Устанавливаем номер хода на текущую позицию (x, y)
     board[x][y] = moveCount;
-
-    // Проверяем все возможные ходы коня
     int dx[] = { -2, -1, 1, 2, -2, -1, 1, 2 };
     int dy[] = { -1, -2, -2, -1, 1, 2, 2, 1 };
     for (int i = 0; i < 8; i++)
@@ -21,7 +16,6 @@ void knightTourHelper(int** board, int x, int y, int moveCount, int n)
         int nextX = x + dx[i];
         int nextY = y + dy[i];
 
-        // Если следующий ход допустим и точка не была посещена ранее, рекурсивно исследуем этот ход
         if (isValidMove(nextX, nextY, n) && board[nextX][nextY] == 0)
         {
             knightTourHelper(board, nextX, nextY, moveCount + 1, n);
@@ -29,7 +23,6 @@ void knightTourHelper(int** board, int x, int y, int moveCount, int n)
     }
 }
 
-// Функция для запуска алгоритма "Ход коня"
 int** knightTour(int n, int startX, int startY)
 {
     int** board = new int* [n];
@@ -38,7 +31,7 @@ int** knightTour(int n, int startX, int startY)
         board[i] = new int[n];
         for (int j = 0; j < n; j++)
         {
-            board[i][j] = 0; // Инициализируем доску значением 0
+            board[i][j] = 0; 
         }
     }
 
@@ -51,15 +44,15 @@ int main()
 {
     setlocale(LC_ALL, "RUS");
     int n, startX, startY;
-    cout << "Введите размер доски: ";
+    cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ РґРѕСЃРєРё: ";
     cin >> n;
-    cout << "Введите начальное положение коня (номер строки и номер столбца): ";
+    cout << "Р’РІРµРґРёС‚Рµ РЅР°С‡Р°Р»СЊРЅРѕРµ РїРѕР»РѕР¶РµРЅРёРµ РєРѕРЅСЏ (РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё Рё РЅРѕРјРµСЂ СЃС‚РѕР»Р±С†Р°): ";
     cin >> startX;
     cin >> startY;
 
     int** board = knightTour(n, startX-1, startY-1);
 
-    cout << "Матрица номеров ходов коня:" << endl;
+    cout << "РњР°С‚СЂРёС†Р° РЅРѕРјРµСЂРѕРІ С…РѕРґРѕРІ РєРѕРЅСЏ:" << endl;
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
@@ -69,7 +62,6 @@ int main()
         cout << endl;
     }
 
-    // Освобождаем память, выделенную для доски
     for (int i = 0; i < n; i++)
     {
         delete[] board[i];
